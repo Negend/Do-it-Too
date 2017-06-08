@@ -47,7 +47,7 @@ class Too
 
 	def self.find_by_id id
 		conn = self.open_connection
-		sql = "SELECT  id, user_id, do_it_id, too_file, rating FROM toos WHERE id = #{id}"
+		sql = "SELECT  id, user_id, do_it_id, too_file, rating FROM testoos WHERE id = #{id}"
 		result = conn.exec(sql)
     post = self.hydrate result[0]
     post
@@ -56,7 +56,7 @@ class Too
 	def self.find_by_tooder username
 		self.find_user_id username
 		conn = self.open_connection
-		sql = "SELECT  id, user_id, do_it_id, too_file, rating FROM toos WHERE id = #{user_id}"
+		sql = "SELECT  id, user_id, do_it_id, too_file, rating FROM testoos WHERE id = #{user_id}"
 		results = conn.exec(sql)
 	   	toos = results.map do |tuple| 
 	        self.hydrate tuple

@@ -24,7 +24,7 @@ class ToosController < Sinatra::Base
 
   get '/:id' do
    id = params[:id].to_i
-   @too = Too.find id    
+   @too = Too.find_by_id id    
    erb :'toos/show'   
   end
     
@@ -52,11 +52,11 @@ class ToosController < Sinatra::Base
     
   put '/:id'  do 
   	'put'      
-   	# id = params[:id].to_i
-    # title = params[:title]
-    # body = params[:body]
-    # Post.update id,title,body
-    # redirect "/"
+   	id = params[:id].to_i
+    username = params[:username]
+    tool_file = params[:tool_file]
+    Post.update id,title,body
+    redirect "/"
   end
     
   delete '/:id'  do
@@ -69,10 +69,11 @@ class ToosController < Sinatra::Base
   get '/:id/edit'  do
   	'edit'
     id = params[:id].to_i
-    @too= Too.find id
+    @too= Too.find_by_id id
     erb :'toos/edit'
   end
-  get '/:id/:id/edit'
+  get '/:id/rating/edit'do
+	end
 
 
 end
