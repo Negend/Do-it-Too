@@ -22,15 +22,40 @@ class ToosController < Sinatra::Base
     erb :'toos/new'    
   end  
 
-  get '/:id' do
-   id = params[:id].to_i
-   @too = Too.find_by_id id    
-   erb :'toos/show'   
-  end
-    
+  
+   # basic edit form then erb
+ #  get "/upload" do
+ #  	haml :upload
+	# end 
+
+	# post "/upload" do 
+ #  	File.open('public/uploads/' + params['myfile'][:filename], "w") do |f|
+ #    	f.write(params['myfile'][:tempfile].read)
+	#   end
+	#   @file = params['myfile'][:filename]
+	#   return "The #{@file} was successfully uploaded!" 
+	# end
+
+	get '/:id' do
+    id = params[:id].to_i
+    @too = Too.find_by_id id    
+    erb :'toos/show'   
+	end
+
   post '/' do  
 
-    too_file = params[:tool_file]
+  	File.open('public/uploads/' + params[:tfile][:filename], "w") do |f|
+    	f.write(params[:tfile][:tempfile].read)
+	  end
+	  @file = params[:tfile][:filename]
+	  too_file = "uploads/#{@file}"
+
+
+
+
+
+
+    # too_file = params[:too_file]
   # in future do it id will be from database or page. id = params[:id] for now = 1 
  # user specific posting(:ID represents do:it page)
   # post '/:id' do   

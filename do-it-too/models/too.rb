@@ -23,10 +23,10 @@ class Too
 		sql = "SELECT id, too_file, rating FROM testoos ORDER BY id"
 		results = conn.exec(sql)
 		toos = results.map do |tuple| 
-        self.hydrate tuple
-  	end
+        	self.hydrate tuple
+  		end
 
-    toos
+    	toos
 	end
 
 	
@@ -62,8 +62,8 @@ class Too
 		sql = "SELECT  id,  user_id, do_it_id, too_file, rating FROM testoos WHERE id = #{user_id}"
 		results = conn.exec(sql)
 	   	toos = results.map do |tuple| 
-	        self.hydrate tuple
-	  	end
+	    	self.hydrate tuple
+		end
 
 	    toos
 	end
@@ -72,7 +72,7 @@ class Too
 	def self.register_tooder username
 		conn = self.open_connection
 		sql = "INSERT INTO members (username,join_date) VALUES ('#{username}',CURRENT_TIMESTAMP)"
-		result = conn.exec(sql)
+		conn.exec(sql)
 	end
 	def update too_file , id
 		conn = Too.open_connection
@@ -81,6 +81,11 @@ class Too
 	end
 	def self.rate
 		
+	end
+
+	def store_image file
+		''
+
 	end
 
 end
