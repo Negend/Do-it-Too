@@ -1,0 +1,7 @@
+<h1><%= @too.tooder %></h1>
+<p><%= @too.date %></p>
+<a href="/<%= @too.id %>/edit">edit</a>
+<form method = 'POST' action = '/<%=params[:id]%>'>
+	<input type="hidden" name="_method" value= 'DELETE'>
+	<input type="submit" name="Delete" value='Remove'>
+</form>
