@@ -1,0 +1,8 @@
+<form method ='POST' action = '/<%=@too.id%>'>
+	<input type="hidden" name="_method" value='PUT'>
+	<label>Username</label>
+	<input type="text" name="username">
+	<label>File</label>
+	<textarea name="tool_file" ><%=@too.tool_file%></textarea>	
+	<input type="submit" value='Did It!'>
+</form>
