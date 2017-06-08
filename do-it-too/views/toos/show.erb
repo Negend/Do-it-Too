@@ -1,6 +1,6 @@
 <h1><%= @too.tooder %></h1>
 <p><%= @too.date %></p>
-<img src=<%=@too.too_file%>>
+<img src=<%=@too.id + @too.too_file%>>
 <a href="/<%= @too.id %>/edit">edit</a>
 <form method = 'POST' action = '/<%=params[:id]%>'>
 	<input type="hidden" name="_method" value= 'DELETE'>

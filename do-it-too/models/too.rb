@@ -52,8 +52,8 @@ class Too
 		conn = self.open_connection
 		sql = "SELECT  t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id WHERE t.id = #{id}"
 		result = conn.exec(sql)
-    too = self.hydrate result.first
-    too
+	    too = self.hydrate result.first
+	    too
 	end
 
 	def self.find_by_tooder username
@@ -80,6 +80,15 @@ class Too
 		conn.exec(sql)
 	end
 	def self.rate
+		
+	end
+
+	def self.show_last_too
+		conn = self.open_connection
+		sql = "SELECT  t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id  where t.id = (select max(id) from testoos);"
+		result = conn.exec(sql)
+	    too = self.hydrate result.first
+	    too
 		
 	end
 

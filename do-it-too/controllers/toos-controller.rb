@@ -22,20 +22,6 @@ class ToosController < Sinatra::Base
     erb :'toos/new'    
   end  
 
-  
-   # basic edit form then erb
- #  get "/upload" do
- #  	haml :upload
-	# end 
-
-	# post "/upload" do 
- #  	File.open('public/uploads/' + params['myfile'][:filename], "w") do |f|
- #    	f.write(params['myfile'][:tempfile].read)
-	#   end
-	#   @file = params['myfile'][:filename]
-	#   return "The #{@file} was successfully uploaded!" 
-	# end
-
 	get '/:id' do
     id = params[:id].to_i
     @too = Too.find_by_id id    
@@ -43,17 +29,11 @@ class ToosController < Sinatra::Base
 	end
 
   post '/' do  
-
   	File.open('public/uploads/' + params[:tfile][:filename], "w") do |f|
     	f.write(params[:tfile][:tempfile].read)
 	  end
 	  @file = params[:tfile][:filename]
 	  too_file = "uploads/#{@file}"
-
-
-
-
-
 
     # too_file = params[:too_file]
   # in future do it id will be from database or page. id = params[:id] for now = 1 
@@ -70,7 +50,11 @@ class ToosController < Sinatra::Base
    	end
 		user_id = Too.find_user_id username
     rating = params[:rating]
-    Too.save do_it_id,user_id,too_file  
+    Too.save do_it_id,user_id,too_file
+    @uploaded_too =Too.show_last_too
+    File.open('public/uploads/' + @uploaded_too.id + params[:tfile][:filename], "w") do |f|
+    	f.write(params[:tfile][:tempfile].read)
+	  end  
     redirect "/"    
   end
 
