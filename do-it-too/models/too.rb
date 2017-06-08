@@ -74,5 +74,13 @@ class Too
 		sql = "INSERT INTO members (username,join_date) VALUES (#{username},CURRENT_TIMESTAMP)"
 		result = conn.exec(sql)
 	end
+	def update too_file , id
+		conn = Too.open_connection
+		sql = "UPDATE testoos SET too_file = '#{too_file}' WHERE id = #{id}"
+		conn.exec(sql)
+	end
+	def self.rate
+		
+	end
 
 end

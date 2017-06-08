@@ -53,10 +53,16 @@ class ToosController < Sinatra::Base
   put '/:id'  do 
   	'put'      
    	id = params[:id].to_i
+   	@too = Too.find_by_id id 
     username = params[:username]
     too_file = params[:tool_file]
-    Post.update id,title,body
-    redirect "/"
+    if @too.tooder == username
+	    @too.update too_file,id
+	    redirect "/"
+  	else
+	  	@message = 'Incorrect tooder name Tooders may only edit their own toos'
+	  	erb :'toos/edit'
+ 	 	end
   end
     
   delete '/:id'  do
