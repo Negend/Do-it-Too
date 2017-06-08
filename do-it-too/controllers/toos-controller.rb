@@ -28,19 +28,22 @@ class ToosController < Sinatra::Base
    erb :'toos/show'   
   end
     
-  post '/' do   
+  post '/' do  
+
     too_file = params[:tool_file]
   # in future do it id will be from database or page. id = params[:id] for now = 1 
  # user specific posting(:ID represents do:it page)
   # post '/:id' do   
     do_it_id = 1
     username = params[:username]
-   	user_id = Too.find_user_id username.to_s
-   	if user_id
-   	else
-   		Too.register_tooder username
-			user_id = Too.find_user_id username
+   	toos = Too.all
+   	# check if theyve posted before if not, add them as a tooder
+   	unregistered = true
+   	toos.each {|todo| unregistered = false if username == todo.tooder}
+   	if unregistered
+   		Too.register_tooder username  	
    	end
+		user_id = Too.find_user_id username
     rating = params[:rating]
     Too.save do_it_id,user_id,too_file  
     redirect "/"    
@@ -56,6 +59,7 @@ class ToosController < Sinatra::Base
    	@too = Too.find_by_id id 
     username = params[:username]
     too_file = params[:tool_file]
+
     if @too.tooder == username
 	    @too.update too_file,id
 	    redirect "/"

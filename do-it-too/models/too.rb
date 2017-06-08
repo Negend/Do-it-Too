@@ -71,7 +71,7 @@ class Too
 
 	def self.register_tooder username
 		conn = self.open_connection
-		sql = "INSERT INTO members (username,join_date) VALUES (#{username},CURRENT_TIMESTAMP)"
+		sql = "INSERT INTO members (username,join_date) VALUES ('#{username}',CURRENT_TIMESTAMP)"
 		result = conn.exec(sql)
 	end
 	def update too_file , id
