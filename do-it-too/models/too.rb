@@ -6,21 +6,22 @@ class Too
 	end
 
 	def self.hydrate too_data
-    too = Too.new
-    too.id = too_data['id']
-    too.date = too_data['join_date']
-    too.user_id = too_data['user_id']
-    too.too_file = too_data['too_file']
-    too.do_it_id = too_data['do_it_id']
-    too.rating = too_data['rating']
-    too.tooder = too_data['username']
-    too
+
+		too = Too.new
+		too.id = too_data['id']
+		too.date = too_data['join_date']
+		too.user_id = too_data['user_id']
+		too.too_file = too_data['too_file']
+		too.do_it_id = too_data['do_it_id']
+		too.rating = too_data['rating']
+		too.tooder = too_data['username']
+		too
 	end
 
 	# index
 	def self.all
 		conn = self.open_connection
-		sql = "SELECT id, too_file, rating FROM testoos ORDER BY id"
+		sql = "SELECT  t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id ORDER BY id"
 		results = conn.exec(sql)
 		toos = results.map do |tuple| 
         	self.hydrate tuple
@@ -92,9 +93,13 @@ class Too
 		
 	end
 
-	def store_image file
-		''
+	def self.destroy id
+		conn = self.open_connection
+		sql = "DELETE FROM testoos WHERE id = #{id}"
+		result = conn.exec(sql)
 
 	end
+
+
 
 end
