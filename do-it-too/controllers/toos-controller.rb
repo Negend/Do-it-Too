@@ -43,6 +43,12 @@ class ToosController < Sinatra::Base
 	get '/:id' do
 		id = params[:id].to_i 
 		@too = Too.find_by_id id
+		if @too.rating
+		rating = @too.rating.split(',')
+		a = rating[0].to_i
+		b = rating[1].to_i
+		@rating = a/b*100
+		end
     erb :'toos/show'  
 	end
 
@@ -102,11 +108,32 @@ class ToosController < Sinatra::Base
     
   get '/:id/edit'  do
   	'edit'
+  	@tooedit = true
+    id = params[:id].to_i
+    @too= Too.find_by_id id
+    erb :'toos/edit'
+  end    
+  get '/:id/rate/edit'  do
     id = params[:id].to_i
     @too= Too.find_by_id id
     erb :'toos/edit'
   end
-  get '/:id/rating/edit'do
+
+  put '/:id/rate'do 
+    id = params[:id].to_i
+  	too = Too.find_by_id id
+  	if too.rating
+  		rating = too.rating
+  		rating.split(',')
+  		a = rating[0].to_i + params[:rate].to_i
+  		b = raiing[1].to_i + 5
+  	else
+  		a = params[:rate].to_i
+  		b = 5
+  	end
+  	rating = "#{a},#{b}"
+  	Too.rate rating,id
+  	redirect "/"+id.to_s
 	end
 
 
