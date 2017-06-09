@@ -1,10 +1,45 @@
-
+<%if @tooedit%>
 <h2><%=@message%></h2>
 <form method ='POST' action = '/<%=@too.id%>'>
 	<input type="hidden" name="_method" value='PUT'>
 	<label>Username</label>
 	<input type="text" name="username">
 	<label>File</label>
-	<textarea name="tool_file" ><%=@too.too_file%></textarea>	
+	<textarea name="tool_file" ></textarea>
+	<input type="file" name="tfile">	
 	<input type="submit" value='Did It!'>
 </form>
+
+<%else%>
+<h2>Rate it?</h2>
+<form method ='POST' action = '/<%=@too.id%>/rate'>
+	<input type="hidden" name="_method" value='PUT'>	
+	<input type="hidden" name="rating" value='1'>	
+	<input class= 'rate' type="submit" value='1'>
+</form>
+
+<form method ='POST' action = '/<%=@too.id%>/rate'>
+	<input type="hidden" name="_method" value='PUT'>
+	<input type="hidden" name="rating" value='2'>	
+	<input class= 'rate' type="submit" value='2'>
+</form>
+
+<form method ='POST' action = '/<%=@too.id%>/rate'>
+	<input type="hidden" name="_method" value='PUT'>
+	<input type="hidden" name="rating" value='3'>	
+	<input class= 'rate' type="submit" value='3'>
+</form>
+
+<form method ='POST' action = '/<%=@too.id%>/rate'>
+	<input type="hidden" name="_method" value='PUT'>
+	<input type="hidden" name="rating" value='4'>	
+	<input class= 'rate' type="submit" value='4'>
+</form>
+
+<form method ='POST' action = '/<%=@too.id%>/rate'>
+	<input type="hidden" name="_method" value='PUT'>
+	<input type="hidden" name="rating" value='5'>	
+	<input class= 'rate' type="submit" value='5'>
+</form>
+<%end%>
+

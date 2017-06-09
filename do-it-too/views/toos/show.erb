@@ -1,8 +1,13 @@
 <h1><%= @too.tooder %></h1>
 <p><%= @too.date %></p>
+<p>Rating:<span><%= @rating? "#{@rating}%" : 'Be The first to rate this Too' %></span></p>
 <a href="/"><img src='<%=@too.too_file%>'></a>
 <img src='<%=@too.too_file%>'>
 <a href="/<%= @too.id %>/edit">edit</a>
+
+<a href="/<%= @too.id %>/rate/edit">RATE</a>
+
+
 <form method = 'POST' action = '/<%=params[:id]%>'>
 	<input type="hidden" name="_method" value= 'DELETE'>
 	<input type="submit" name="Delete" value='Remove'>
