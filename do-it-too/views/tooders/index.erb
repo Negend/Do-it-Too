@@ -1,0 +1,8 @@
+<h1>Tooders page</h1>
+
+<% @tooders.each do |tooder| %>
+<div class='too'>
+  <h3><a href="/tooder/<%= tooder.id %>"><%= tooder.too_file %></a></h3>
+  <p><%= tooder.username %></p>
+</div>
+<% end %>

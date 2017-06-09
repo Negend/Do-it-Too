@@ -14,10 +14,14 @@ class Too
 		too.too_file = too_data['too_file']
 		too.do_it_id = too_data['do_it_id']
 		too.rating = too_data['rating']
-		too.tooder = too_data['username']
-		too
+		
 	end
 
+	def self.hydrate_tooder tooder_data
+		too.id = too_data['id']
+		too.user_id = too_data['user_id']
+		too.tooder = too_data['username']
+		too
 	# index
 	def self.all
 		conn = self.open_connection
@@ -84,13 +88,41 @@ class Too
 		
 	end
 
-	def self.show_last_too
+	def self.show_last_too id
 		conn = self.open_connection
-		sql = "SELECT  t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id  where t.id = (select max(id) from testoos);"
+		sql = "SELECT t.id, user_id, do_it_id, too_file, rating, username,join_date  
+				FROM (
+					SELECT * FROM members m join testoos t on m.id  = user_id
+				 	WHERE t.id in(
+				 		SELECT max(t.id)  FROM
+		 			 	members m join testoos t on m.id  = user_id group by username
+		 			)
+		 		) y 
+		 	 	WHERE user_id = #{id};"
 		result = conn.exec(sql)
 	    too = self.hydrate result.first
 	    too
-		
+	end
+
+	def tooders_toos user_id
+		conn = self.open_connection
+		sql = "SELECT  t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id  WHERE user_id = #{user_id};"
+		result = conn.exec(sql)
+	    toos = results.map do |tuple| 
+	    	self.hydrate tuple
+		endm
+	    toos
+	end
+
+
+	def self.all_tooders
+		conn = self.open_connection
+		sql = "username, join_date FROM members ORDER BY id"
+		results = conn.exec(sql)
+		tooders = results.map do |tuple| 
+        self.hydrate tuple
+  	end
+   		tooders
 	end
 
 	def self.destroy id

@@ -21,11 +21,28 @@ class ToosController < Sinatra::Base
   get '/new'  do    	
     erb :'toos/new'    
   end  
+  
+	get '/tooder' do
+		@tooders = Too.all_tooder
+		erb :'tooders/index'
+	end
+  get '/tooder/:id' do
+  		id = params[:id].to_i 		
+    @too = Too.tooders_toos id   
+    erb :'tooders/show'
+  end
+
+	get '/tooder/:id/edit' do
+
+  end
+
+
+
+
+
 
 	get '/:id' do
-    id = params[:id].to_i
-    @too = Too.find_by_id id    
-    erb :'toos/show'   
+       
 	end
 
   post '/' do  
@@ -40,16 +57,6 @@ class ToosController < Sinatra::Base
    	# check if theyve posted before if not, add them as a tooder
    	unregistered = true
    	toos = Too.all
-   	# i = 0
-   	# while i < toos.length
-   	# 	puts username
-   	# 	puts toos[i].tooder
-   	# 	# binding.pry
-   	# 	if username == toos[i].tooder
-   	# 		unregistered = 1
-   	# 	end
-   	# 	i = i + 1
-   	# 
    	toos.each {|too| unregistered = false if username = too.tooder}
    	if unregistered
    		Too.register_tooder username  	
