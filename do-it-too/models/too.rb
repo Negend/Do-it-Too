@@ -34,7 +34,21 @@ class Too
     	toos
 	end
 
-	
+	def self.hydrate_tooder tooder_data
+    tooder = tooderder.new
+    tooder.id = tooder_data['id']
+    tooder.date = tooder_data['join_date']   
+    tooder.tooder = tooder_data['username']
+    tooder
+	end
+
+	def self.find_tooder id
+		conn = self.open_connection
+		sql = "SELECT id, username, join_date FROM members WHERE id = '#{id}'"
+		result = conn.exec(sql)
+		tooder = self.hydrate_tooder result.first
+		tooder
+	end	
 
 
 	def self.save do_it_id,user_id,too_file

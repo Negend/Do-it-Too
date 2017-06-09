@@ -4,13 +4,21 @@ class Tooder
 		PG.connect(dbname: "do_it_too")
 	end
 
-	def self.hydrate too_data
+	def self.hydrate_tooder tooder_data
     tooder = tooderder.new
     tooder.id = tooder_data['id']
     tooder.date = tooder_data['join_date']   
     tooder.tooder = tooder_data['username']
     tooder
 	end
+
+	def self.find_by_id id
+		conn = self.open_connection
+		sql = "SELECT id, username, join_date FROM members WHERE id = '#{id}'"
+		result = conn.exec(sql)
+		tooder = self.hydrate_tooder result.first
+		tooder
+	end	
 
 	def self.all_tooders
 		conn = self.open_connection
@@ -33,7 +41,7 @@ class Tooder
 		conn = self.open_connection
 		sql = "SELECT id, username, join_date FROM members WHERE id = '#{id}'"
 		result = conn.exec(sql)
-		tooder = self.hydrate result.first
+		tooder = self.hydrate_tooder result.first
 	end
 
 
