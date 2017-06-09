@@ -22,12 +22,12 @@ class Tooder
 
 	def self.all_tooders
 		conn = self.open_connection
-		sql = "username, join_date FROM members ORDER BY id"
+		sql = "m.id,username, join_date FROM members m join testoos t on t.user_id = m.id ORDER BY id"
 		results = conn.exec(sql)
 		tooders = results.map do |tuple| 
-        self.hydrate tuple
+        self.hydrate_tooder tuple
   	    end
-  		tooders    	
+  		tooders   	
 	end
 
 	def self.find_user_id username
@@ -39,7 +39,7 @@ class Tooder
 	end
 	def self.find_by_id id
 		conn = self.open_connection
-		sql = "SELECT id, username, join_date FROM members WHERE id = '#{id}'"
+		sql = "SELECT id, username, join_date FROM members WHERE id = #{id}"
 		result = conn.exec(sql)
 		tooder = self.hydrate_tooder result.first
 	end

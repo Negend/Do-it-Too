@@ -38,5 +38,8 @@ Targets in order of wishful thinking starting from easiest
 * make user membership
 * ability to see all pictures posted by specific user
 * comment section
-* 
-* 
+
+##progress
+need to make edit page for too connected to file
+
+add links to tooder page
