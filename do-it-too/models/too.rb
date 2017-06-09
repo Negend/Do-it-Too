@@ -1,5 +1,5 @@
 class Too
-	attr_accessor :id, :user_id, :do_it_id, :too_file, :rating, :tooder, :date
+	attr_accessor :id, :user_id, :do_it_id, :too_file, :rating, :tooder, :date, :rated
 	
 	def self.open_connection
 		PG.connect(dbname: "do_it_too")
@@ -13,6 +13,12 @@ class Too
 		too.too_file = too_data['too_file']
 		too.do_it_id = too_data['do_it_id']
 		too.rating = too_data['rating']	
+		if too.rating
+		rating = too.rating.split(',')
+		a = rating[0].to_i
+		b = rating[1].to_i
+		too.rated = a/b*100
+		end
 		too	
 
 	end
@@ -119,9 +125,13 @@ class Too
 	    	self.hydrate tuple
 		end
 	    toos
-	    
-	end
 
+	end
+	def self.rate rating,id
+		conn = self.open_connection
+		sql = "UPDATE testoos SET rating = '#{rating}' WHERE id = #{id}" 
+		conn.exec(sql)
+	end
 
 	def self.all_tooders
 		conn = self.open_connection

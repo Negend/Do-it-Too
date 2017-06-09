@@ -1,8 +1,11 @@
 <h1>Welcome to the homepage</h1>
 <a href="/tooder">checkout our tooders</a>
-<% @toos.each do |too| %>
-<div class='too'>
-  <h3><a href="/<%= too.id %>"><%= too.too_file %></a></h3>
-  <p><%= too.rating %></p>
-</div>
-<% end %>
+<% @toos.each do |too|  %>
+	<% if too.too_file != '' %>
+		<div class='too'>
+		  <h3><a href="/<%= too.id %>"><%= too.too_file %></a></h3>
+		  <p><span><%=too.rating ? "#{too.rated}%" : 'Be The first to rate this Too'  %></span></%</p>
+		</div>
+
+	<%end%> 
+<%end %>

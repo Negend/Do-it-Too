@@ -43,12 +43,12 @@ class ToosController < Sinatra::Base
 	get '/:id' do
 		id = params[:id].to_i 
 		@too = Too.find_by_id id
-		if @too.rating
-		rating = @too.rating.split(',')
-		a = rating[0].to_i
-		b = rating[1].to_i
-		@rating = a/b*100
-		end
+		# if @too.rating
+		# rating = @too.rating.split(',')
+		# a = rating[0].to_i
+		# b = rating[1].to_i
+		# @rating = a/b*100
+		# end
     erb :'toos/show'  
 	end
 

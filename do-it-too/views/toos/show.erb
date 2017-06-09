@@ -1,6 +1,6 @@
 <h1><%= @too.tooder %></h1>
 <p><%= @too.date %></p>
-<p>Rating:<span><%= @rating? "#{@rating}%" : 'Be The first to rate this Too' %></span></p>
+<p>Rating:<span><%= @rating? "#{@too.rated}%" : 'Be The first to rate this Too' %></span></p>
 <a href="/"><img src='<%=@too.too_file%>'></a>
 <img src='<%=@too.too_file%>'>
 <a href="/<%= @too.id %>/edit">edit</a>
