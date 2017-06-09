@@ -29,16 +29,16 @@ class Too
 	end
 
 	def self.hydrate_tooder tooder_data
-    tooder = Too.new
-    tooder.id = tooder_data['id']
-    tooder.date = tooder_data['join_date']   
-    tooder.tooder = tooder_data['username']
-    tooder
+	    tooder = Too.new
+	    tooder.id = tooder_data['id']
+	    tooder.date = tooder_data['join_date']   
+	    tooder.tooder = tooder_data['username']
+	    tooder
 	end
 
 	def self.find_tooder id
 		conn = self.open_connection
-		sql = "SELECT id, username, join_date FROM members WHERE id = '#{id}'"
+		sql = "SELECT id, username, join_date FROM members WHERE id = #{id}"
 		result = conn.exec(sql)
 		tooder = self.hydrate_tooder result.first
 		tooder
@@ -111,14 +111,15 @@ class Too
 
 	end
 
-	def tooders_toos user_id
+	def self.tooders_toos user_id
 		conn = self.open_connection
 		sql = "SELECT  t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id  WHERE user_id = #{user_id}"
-		result = conn.exec(sql)
+		results = conn.exec(sql)		
 	    toos = results.map do |tuple| 
 	    	self.hydrate tuple
 		end
 	    toos
+	    
 	end
 
 

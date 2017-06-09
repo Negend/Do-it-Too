@@ -3,7 +3,7 @@
 <% @tooders.each do |tooder| too = Too.show_last_too tooder.id %>
 <div class='too'>
 
-  <h3><a href="/tooder/<%= tooder.id %>"><%= too.too_file %></a></h3>
+  <h3><a href="/tooder/<%= tooder.id %>"><img src='<%= too.too_file%>'></a></h3>
   <p><%= tooder.tooder %></p>
 </div>
 <% end %>

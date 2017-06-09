@@ -32,9 +32,7 @@ class ToosController < Sinatra::Base
     @toos = Too.tooders_toos id  
 		erb :'tooders/show'
   end
-
 	get '/tooder/:id/edit' do
-
   end
 
 
