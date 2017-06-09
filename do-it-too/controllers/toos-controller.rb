@@ -27,11 +27,10 @@ class ToosController < Sinatra::Base
 		erb :'tooders/index'
 	end
   get '/tooder/:id' do
-  	@tooder = Too.find_tooder id
   	id = params[:id].to_i 
   	@tooder = Too.find_tooder id		
-    @toos = Too.tooders_toos id   
-    
+    @toos = Too.tooders_toos id  
+		erb :'tooders/show'
   end
 
 	get '/tooder/:id/edit' do
