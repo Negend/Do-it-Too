@@ -6,36 +6,30 @@ class Too
 	end
 
 	def self.hydrate too_data
-
 		too = Too.new
 		too.id = too_data['id']
 		too.date = too_data['join_date']
 		too.user_id = too_data['user_id']
 		too.too_file = too_data['too_file']
 		too.do_it_id = too_data['do_it_id']
-		too.rating = too_data['rating']
-		
+		too.rating = too_data['rating']	
+		too	
+
 	end
 
-	def self.hydrate_tooder tooder_data
-		too.id = too_data['id']
-		too.user_id = too_data['user_id']
-		too.tooder = too_data['username']
-		too
 	# index
 	def self.all
 		conn = self.open_connection
-		sql = "SELECT  t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id ORDER BY id"
+		sql = "SELECT t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id ORDER BY id"
 		results = conn.exec(sql)
 		toos = results.map do |tuple| 
         	self.hydrate tuple
   		end
-
     	toos
 	end
 
 	def self.hydrate_tooder tooder_data
-    tooder = tooderder.new
+    tooder = Too.new
     tooder.id = tooder_data['id']
     tooder.date = tooder_data['join_date']   
     tooder.tooder = tooder_data['username']
@@ -83,7 +77,6 @@ class Too
 	   	toos = results.map do |tuple| 
 	    	self.hydrate tuple
 		end
-
 	    toos
 	end
 
@@ -93,49 +86,49 @@ class Too
 		sql = "INSERT INTO members (username,join_date) VALUES ('#{username}',CURRENT_TIMESTAMP)"
 		conn.exec(sql)
 	end
+
 	def update too_file , id
 		conn = Too.open_connection
 		sql = "UPDATE testoos SET too_file = '#{too_file}' WHERE id = #{id}"
 		conn.exec(sql)
 	end
-	def self.rate
-		
+
+	def self.rate		
 	end
 
 	def self.show_last_too id
 		conn = self.open_connection
-		sql = "SELECT t.id, user_id, do_it_id, too_file, rating, username,join_date  
-				FROM (
-					SELECT * FROM members m join testoos t on m.id  = user_id
-				 	WHERE t.id in(
-				 		SELECT max(t.id)  FROM
-		 			 	members m join testoos t on m.id  = user_id group by username
+		sql = "SELECT id, user_id, do_it_id, too_file, rating, username,join_date FROM (SELECT t.id, user_id, do_it_id, too_file, rating, username,join_date FROM members m inner join testoos t on m.id  = t.user_id WHERE t.id in (SELECT max(t.id) FROM
+		 			 	members m inner join testoos t on m.id  = t.user_id group by username
 		 			)
 		 		) y 
-		 	 	WHERE user_id = #{id};"
+		 	 	WHERE user_id = #{id}"
 		result = conn.exec(sql)
+
 	    too = self.hydrate result.first
+
 	    too
+
 	end
 
 	def tooders_toos user_id
 		conn = self.open_connection
-		sql = "SELECT  t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id  WHERE user_id = #{user_id};"
+		sql = "SELECT  t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id  WHERE user_id = #{user_id}"
 		result = conn.exec(sql)
 	    toos = results.map do |tuple| 
 	    	self.hydrate tuple
-		endm
+		end
 	    toos
 	end
 
 
 	def self.all_tooders
 		conn = self.open_connection
-		sql = "username, join_date FROM members ORDER BY id"
+		sql = "SELECT m.id, username, join_date FROM members m join testoos t on t.user_id = m.id ORDER BY m.id"
 		results = conn.exec(sql)
 		tooders = results.map do |tuple| 
-        self.hydrate tuple
-  	end
+          self.hydrate_tooder tuple
+  	    end
    		tooders
 	end
 
@@ -143,7 +136,6 @@ class Too
 		conn = self.open_connection
 		sql = "DELETE FROM testoos WHERE id = #{id}"
 		result = conn.exec(sql)
-
 	end
 
 
