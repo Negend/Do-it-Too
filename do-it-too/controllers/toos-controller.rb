@@ -12,9 +12,16 @@ class ToosController < Sinatra::Base
   end
 
 
+  third = 1
+  do_its = ['/do-its/elephant.jpg','/do-its/sloth.jpg','/do-its/dragon.jpg']
+  $do_it = do_its[third]
+
+
+
 	get '/' do
 		@toos = Too.all
-		@title = "what??" 
+		
+		@home = true 
 		erb :'toos/index'  
 	end
 
@@ -33,6 +40,10 @@ class ToosController < Sinatra::Base
 		erb :'tooders/show'
   end
 	get '/tooder/:id/edit' do
+  end
+  delete '/tooder/:id' do
+  	Too.destroy_tooder params[:id].to_i
+  	redirect '/tooder'
   end
 
 
@@ -122,17 +133,20 @@ class ToosController < Sinatra::Base
   put '/:id/rate'do 
     id = params[:id].to_i
   	too = Too.find_by_id id
-  	if too.rating
+  	if too.rating 
   		rating = too.rating
-  		rating.split(',')
-  		a = rating[0].to_i + params[:rate].to_i
-  		b = raiing[1].to_i + 5
+  		rating = rating.split(',')
+  		a = rating[0].to_i + params[:rating].to_i
+  		b = rating[1].to_i + 5
+  		
   	else
-  		a = params[:rate].to_i
+  		
+  		a = params[:rating].to_i
   		b = 5
   	end
-  	rating = "#{a},#{b}"
-  	Too.rate rating,id
+  	rated = "#{a},#{b}"
+  	
+  	Too.rate rated,id
   	redirect "/"+id.to_s
 	end
 

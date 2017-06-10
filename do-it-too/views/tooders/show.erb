@@ -5,4 +5,9 @@
   <h3><a href="/<%= too.id %>"><%= too.too_file %></a></h3>
   <p><%= too.rated %></p>
 </div>
+<!-- make user delete -->
+<form method = 'POST' action = '/tooder/<%=params[:id]%>'>
+	<input type="hidden" name="_method" value= 'DELETE'>
+	<input type="submit" name="Delete" value='Remove'>
+</form>
 <% end %>

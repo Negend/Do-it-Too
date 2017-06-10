@@ -1,9 +1,10 @@
 <h1>Tooders page</h1>
 
 <% @tooders.each do |tooder| too = Too.show_last_too tooder.id %>
-<div class='too'>
+<div class='toos'>
 
-  <h3><a href="/tooder/<%= tooder.id %>"><img src='<%= too.too_file%>'></a></h3>
-  <p><%= tooder.tooder %></p>
+  <a href="/tooder/<%= tooder.id %>"><img class='toos' src='<%= too.too_file%>'></a>
+  <a href="/tooder/<%= tooder.id %>"><%= tooder.tooder %></a>
+
 </div>
 <% end %>

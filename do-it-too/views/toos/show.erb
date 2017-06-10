@@ -1,8 +1,8 @@
 <h1><%= @too.tooder %></h1>
 <p><%= @too.date %></p>
-<p>Rating:<span><%= @rating? "#{@too.rated}%" : 'Be The first to rate this Too' %></span></p>
-<a href="/"><img src='<%=@too.too_file%>'></a>
-<img src='<%=@too.too_file%>'>
+<p>Rating:<span><%= @too.rated ? "#{@too.rated}%" : 'Be The first to rate this Too' %></span></p>
+<a href="/"><img class ='toos' src='<%=@too.too_file%>'></a> <!-- do it file path-->
+<img class ='toos' src='<%=@too.too_file%>'>
 <a href="/<%= @too.id %>/edit">edit</a>
 
 <a href="/<%= @too.id %>/rate/edit">RATE</a>

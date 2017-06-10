@@ -15,9 +15,10 @@ class Too
 		too.rating = too_data['rating']	
 		if too.rating
 		rating = too.rating.split(',')
-		a = rating[0].to_i
-		b = rating[1].to_i
-		too.rated = a/b*100
+		a = rating[0].to_f
+		b = rating[1].to_f
+		too.rated = (a/b*100).round
+		
 		end
 		too	
 
@@ -99,8 +100,6 @@ class Too
 		conn.exec(sql)
 	end
 
-	def self.rate		
-	end
 
 	def self.show_last_too id
 		conn = self.open_connection
@@ -146,6 +145,11 @@ class Too
 	def self.destroy id
 		conn = self.open_connection
 		sql = "DELETE FROM testoos WHERE id = #{id}"
+		result = conn.exec(sql)
+	end
+	def self.destroy_tooder id
+		conn = self.open_connection
+		sql = "DELETE FROM members WHERE id = #{id}"
 		result = conn.exec(sql)
 	end
 
