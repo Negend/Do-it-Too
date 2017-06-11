@@ -12,35 +12,39 @@
 
 <%else%>
 <h2>Rate it?</h2>
-<form method ='POST' action = '/<%=@too.id%>/rate'>
-	<input type="hidden" name="_method" value='PUT'>	
-	<input type="hidden" name="rating" value='1'>	
-	<input class="rate" type="submit" value='1'>
+<form method ='POST' action = '/<%=@too.id%>/rate' class='rate'>
+		<input type="hidden" name="_method" value='PUT'>
+	<div class='stars' >	
+		<input type="radio" name="rating" value='1'>
+		<div id='oneStar'>
+			<p>1</p>
+		</div>
+	</div>
+	<div class='stars' >	
+		<input type="radio" name="rating" value='2'>
+		<div id='twoStar'>
+			<p>2</p>
+		</div>
+	</div>
+	<div class='stars' >	
+		<input type="radio" name="rating" value='3'>
+		<div id='threeStar'>
+			<p>3</p>
+		</div>
+	</div>
+	<div class='stars' >	
+		<input type="radio" name="rating" value='4'>
+		<div id='fourStar'>
+			<p>4</p>
+		</div>
+	</div>
+	<div class='stars' >	
+		<input type="radio" name="rating" value='5'>
+		<div id='fiveStar'>
+			<p>5</p>
+		</div>
+	</div>				
+	<input type="submit" value='Rate'>
 </form>
-
-<form method ='POST' action = '/<%=@too.id%>/rate'>
-	<input type="hidden" name="_method" value='PUT'>
-	<input type="hidden" name="rating" value='2'>	
-	<input class= 'rate' type="submit" value='2'>
-</form>
-
-<form method ='POST' action = '/<%=@too.id%>/rate'>
-	<input type="hidden" name="_method" value='PUT'>
-	<input type="hidden" name="rating" value='3'>	
-	<input class= 'rate' type="submit" value='3'>
-</form>
-
-<form method ='POST' action = '/<%=@too.id%>/rate'>
-	<input type="hidden" name="_method" value='PUT'>
-	<input type="hidden" name="rating" value='4'>	
-	<input class= 'rate' type="submit" value='4'>
-</form>
-
-<form method ='POST' action = '/<%=@too.id%>/rate'>
-	<input type="hidden" name="_method" value='PUT'>
-	<input type="hidden" name="rating" value='5'>	
-	<input class= 'rate' type="submit" value='5'>
-</form>
-
 <%end%>
 

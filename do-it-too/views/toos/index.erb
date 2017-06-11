@@ -1,11 +1,14 @@
 <h1>Welcome to the homepage</h1>
 <a href="/tooder">checkout our tooders</a>
+<div >
+	<img id ='do_it' src="<%=$do_it%>">
+</div>
 <% @toos.each do |too|  %>
-	<% if too.too_file != '' %>
-		<div class='toos'>
-		  <a  href="/<%= too.id %>"><img class='toos' src='<%= too.too_file %>'></a>
+	<% if too.too_file != '' %>		
+		<article >
+		  <a  href="/<%= too.id %>"><img class='too' src='<%= too.too_file %>'></a>
 		  <p><span><%=too.rating ? "#{too.rated}%" : 'Be The first to rate this Too'  %></span></p>
-		</div>
+		</article>
 
 	<%end%> 
 <%end %>

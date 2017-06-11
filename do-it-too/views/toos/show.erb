@@ -1,13 +1,18 @@
 <h1><%= @too.tooder %></h1>
 <p><%= @too.date %></p>
-<p>Rating:<span><%= @too.rated ? "#{@too.rated}%" : 'Be The first to rate this Too' %></span></p>
-<a href="/"><img class ='toos' src='<%=@too.too_file%>'></a> <!-- do it file path-->
-<img class ='toos' src='<%=@too.too_file%>'>
+<p>Rating: &#9734 <span><%= @too.rated ? "#{@too.rated}%"  : 'Be The first to rate this Too' %></span></p>
+<section class='show'>	
+	<a href="/"><img class ='toos' src='<%=$do_it%>'></a> 		
+</section>
+<section class='show'>	
+		<img class ='toos' src='<%=@too.too_file%>'><br />
+		<div id='rateform'>
+			<%= erb :'partials/rating'%>		
+		</div>
+	</div>				
+</section>
 <a href="/<%= @too.id %>/edit">edit</a>
-
-<a href="/<%= @too.id %>/rate/edit">RATE</a>
-
-
+		<a href="/<%= @too.id %>/rate-edit">RATE &#9734</a>
 <form method = 'POST' action = '/<%=params[:id]%>'>
 	<input type="hidden" name="_method" value= 'DELETE'>
 	<input type="submit" name="Delete" value='Remove'>
