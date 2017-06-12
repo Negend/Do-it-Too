@@ -1,19 +1,35 @@
-<h1><%= @too.tooder %></h1>
-<p><%= @too.date %></p>
-<p>Rating: &#9734 <span><%= @too.rated ? "#{@too.rated}%"  : 'Be The first to rate this Too' %></span></p>
+<section class='show'>	
+		<img class ='toos' src='<%=@too.too_file%>'>							
+</section>
+<div id='info'>
+	<!-- <div class = 'info'>
+		<h1><%= @too.tooder %></h1>
+	</div>
+
+	<div class = 'info'>
+		<p>Rating:<%=# @too.rated ? "#{@too.rated}%" : 'Be The first to rate this Too' %></p>
+	</div>
+ -->
+	<div id='rateform' class = 'info'>		
+		<%= erb :'partials/rating'%>				
+	</div>
+
+	<!-- <div class = 'info'>
+		<form method = 'POST' action = '/<%#=params[:id]%>'>
+			<input type="hidden" name="_method" value= 'DELETE'>
+			<input type="submit" name="Delete" value='Remove'>
+		</form>
+	</div>
+
+	<div class = 'info'>
+		<a href="/<%= @too.id %>/edit">edit</a>
+	</div> -->
+
+</div>
 <section class='show'>	
 	<a href="/"><img class ='toos' src='<%=$do_it%>'></a> 		
 </section>
-<section class='show'>	
-		<img class ='toos' src='<%=@too.too_file%>'><br />
-		<div id='rateform'>
-			<%= erb :'partials/rating'%>		
-		</div>
-	</div>				
-</section>
-<a href="/<%= @too.id %>/edit">edit</a>
-		<a href="/<%= @too.id %>/rate-edit">RATE &#9734</a>
-<form method = 'POST' action = '/<%=params[:id]%>'>
-	<input type="hidden" name="_method" value= 'DELETE'>
-	<input type="submit" name="Delete" value='Remove'>
-</form>
+
+
+		<!-- <a href="/<%= @too.id %>/rate-edit">RATE &#9734</a>
+ -->
