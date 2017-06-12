@@ -1,8 +1,8 @@
-$(loaded)
-function loaded (){
-console.log('jimini cricket')
+// $(loaded)
+// function loaded (){
+// console.log('jimini cricket')
 
-prettyStars()
+// prettyStars()
 
 
 
@@ -43,39 +43,39 @@ prettyStars()
 // 	})
 // }
 
-function prettyStars (){
-	$('.rate').each(function(index,event){				
-		$(this).click(function(event){
-			$('.rate').each(function(index,event){
-				this.css({'display':'inline-block'})
-			})
-		}) 											
-	})
-}
+// function prettyStars (){
+// 	$('.rate').each(function(index,event){				
+// 		$(this).click(function(event){
+// 			$('#rateform').css({'display':'none'})
+
+			
+// 		}) 											
+// 	})
+// }
 
 
-function prettyStar (){
-	$('.rate').each(function(index,event){				
-		$(this).hover(									
-			function(){
-			},
-			function(){} 					
-		)				
-	})
-}
-
-
-
+// function prettyStar (){
+// 	$('.rate').each(function(index,event){				
+// 		$(this).hover(									
+// 			function(){
+// 			},
+// 			function(){} 					
+// 		)				
+// 	})
+// }
 
 
 
 
 
-function starChange(color,i){
-	for(var x = 0; x = 3; x++){
-		$($('.rate')[x]).css({"color" : color})	
-	}
-}	
+
+
+
+// function starChange(color,i){
+// 	for(var x = 0; x = 3; x++){
+// 		$($('.rate')[x]).css({"color" : color})	
+// 	}
+// }	
 
 
 

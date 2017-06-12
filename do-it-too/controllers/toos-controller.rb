@@ -12,7 +12,7 @@ class ToosController < Sinatra::Base
   end
 
 
-  third = 1
+  third = 0
   do_its = ['/do-its/elephant.jpg','/do-its/sloth.jpg','/do-its/dragon.jpg']
   $do_it = do_its[third]
   $unvoted = true
@@ -68,16 +68,17 @@ class ToosController < Sinatra::Base
     # in future do it id will be from database or page. id = params[:id] for now = 1 
     # user specific posting(:ID represents do:it page)
     # post '/:id' do
+    password = params[:password]
     username = params[:username]
     rating = params[:rating]
     @file = params[:tfile][:filename]   
     do_it_id = third   	# check if theyve posted before if not, add them as a tooder
    	unregistered = true
-   	toos = Too.all
-   	toos.each {|too| unregistered = false if username == too.tooder}
+   	tooders = Too.all_tooders 
+   	tooders.each {|tood| unregistered = false if username == tood.tooder}
     
    	if unregistered
-   		Too.register_tooder username  	
+   		Too.register_tooder username,password 	
    	end  	
 		user_id = Too.find_user_id username
     # upload
@@ -113,7 +114,12 @@ class ToosController < Sinatra::Base
     
   delete '/:id'  do
     id = params[:id].to_i
-    Too.destroy id
+    too = Too.find_by_id id
+    tooder = Too.find_tooder too.user_id 
+    
+    if tooder.password == params[:password]
+      Too.destroy id
+    end
     redirect "/"    
   end
     
@@ -148,6 +154,7 @@ class ToosController < Sinatra::Base
   	
   	Too.rate rated,id
     $unvoted = false
+
   	redirect "/"+id.to_s
 	end
 
