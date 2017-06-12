@@ -1,5 +1,5 @@
 class Too
-	attr_accessor :id, :user_id, :do_it_id, :too_file, :rating, :tooder, :date, :rated
+	attr_accessor :id, :user_id, :do_it_id, :too_file, :rating, :tooder, :date, :rated, :password
 	
 	def self.open_connection
 		PG.connect(dbname: "do_it_too")
@@ -13,7 +13,8 @@ class Too
 		too.user_id = too_data['user_id']
 		too.too_file = too_data['too_file']
 		too.do_it_id = too_data['do_it_id']
-		too.rating = too_data['rating']	
+		too.rating = too_data['rating']
+
 		if too.rating
 		rating = too.rating.split(',')
 		a = rating[0].to_f
@@ -28,7 +29,7 @@ class Too
 	# index
 	def self.all third
 		conn = self.open_connection
-		sql = "SELECT t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id WHERE do_it_id = #{third} ORDER BY id"
+		sql = "SELECT t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id  WHERE do_it_id = #{third} ORDER BY id"
 		results = conn.exec(sql)
 		toos = results.map do |tuple| 
         	self.hydrate tuple
@@ -41,12 +42,13 @@ class Too
 	    tooder.id = tooder_data['id']
 	    tooder.date = tooder_data['join_date']   
 	    tooder.tooder = tooder_data['username']
+	    tooder.password = tooder_data['password']
 	    tooder
 	end
 
 	def self.find_tooder id
 		conn = self.open_connection
-		sql = "SELECT id, username, join_date FROM members WHERE id = #{id}"
+		sql = "SELECT id, username, join_date, password FROM members WHERE id = #{id}"
 		result = conn.exec(sql)
 		tooder = self.hydrate_tooder result.first
 		tooder
@@ -89,9 +91,9 @@ class Too
 	end
 
 
-	def self.register_tooder username
+	def self.register_tooder username,password
 		conn = self.open_connection
-		sql = "INSERT INTO members (username,join_date) VALUES ('#{username}',CURRENT_TIMESTAMP)"
+		sql = "INSERT INTO members (username,join_date,password ) VALUES ('#{username}',CURRENT_TIMESTAMP, '#{password}')"
 		conn.exec(sql)
 	end
 
@@ -145,8 +147,10 @@ class Too
 
 	def self.destroy id
 		conn = self.open_connection
+		sqlo = 'delete from members where id not in (select user_id from testoos)'
 		sql = "DELETE FROM testoos WHERE id = #{id}"
-		result = conn.exec(sql)
+		conn.exec(sqlo)
+		conn.exec(sql)
 	end
 	def self.destroy_tooder id
 		conn = self.open_connection
