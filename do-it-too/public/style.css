@@ -1,35 +1,59 @@
 body{
 	background-color:beige;
 	text-align: center;
-	border:5vw solid black;
+	border-left:5vw solid black;
+	border-right:5vw solid black;
 	cursor: pointer;
+	min-width: 330px;
+	width:100vw;
+	cursor: pointer;
+	text-align: center;
+	/*height:90vh;*/
 }
 
 
 
 header{
-	font-family: cursive;
+	font-family: 'Indie Flower', cursive;
 	color:beige;
-	background: linear-gradient( black,black,beige);
+	background: linear-gradient( black,black,black);
 	text-shadow:3px 3px 1em black;
 	height:8vh;	
-	font-size: 3em;
+	font-size: 7vh;
 	text-align:center;	
 	/*padding:9px;*/
 }
 
 h4{
+	text-decoration: none;
 	display: inline-block;
-	
+	font-family: 'Indie Flower', cursive;
+	margin: 0px 8px;	
+	background-color: white;
+	border-radius:4px;
+	border:2px solid black;
+	padding:3px;
+	color:black;
+	box-shadow: -1px -1px 0.5em beige;
 
+}
+nav{
+	margin-top:-12px;
+	
+}
+
+.tooName{
+	color:white;
+	float:left;
+	margin:6%;
+	font-size:1em;
+	font-family: 'Indie Flower', cursive;
 }
 
 
-
-
 #do_it{
-	height:40vh;
-	width: 40vh;	 
+	height:40%;
+	width: 40%;	 
 }
 .rate{
 	background-color: red;
@@ -66,10 +90,17 @@ h4{
 .info{
 	display:inline-block;
 }
+
+a{
+	text-decoration: none;
+	display:inline-block;
+	color:black;
+}
+
 .show{
-	height:30vh;
+	height:35vh;
 	width:70vw;
-	margin:2.5vh 5vh;
+	margin:2.5% auto;
 	display: inline-block;
 	vertical-align: top;
 
