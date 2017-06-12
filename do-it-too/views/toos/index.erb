@@ -1,14 +1,24 @@
-<h1>Too of the week</h1>
-<a href="/tooder">checkout our tooders</a>
-<div >
-	<img id ='do_it' src="<%=$do_it%>">
-</div>
+
+
+<section >
+	<div class = 'bananas'>
+		<img id ='do_it' src="<%=$do_it%>">
+		
+		<div class = label >
+			<h4>Too of the week</h4>
+		</div>
+	</div>
+</section>
+<section class = 'banana'>
 <% @toos.each do |too|  %>
 	<% if too.too_file != '' %>		
 		<article >
 		  <a  href="/<%= too.id %>"><img class='too' src='<%= too.too_file %>'></a>
-		  <p><span><%=too.rating ? "#{too.rated}%" : 'Be The first to rate this Too'  %></span></p>
+		  <div class='label'>
+		 	 <h4> &#9889 <%= too.rating ? "#{too.rated}%" : 'Rate it first'  %></h4>
+		  </div>
 		</article>
 
 	<%end%> 
 <%end %>
+</section>
