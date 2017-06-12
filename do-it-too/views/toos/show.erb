@@ -2,26 +2,26 @@
 		<img class ='toos' src='<%=@too.too_file%>'>							
 </section>
 <div id='info'>
-	<!-- <div class = 'info'>
-		<h1><%= @too.tooder %></h1>
+	<div class ='tooName info'>
+		By <%= @too.tooder %>
 	</div>
 
-	<div class = 'info'>
-		<p>Rating:<%=# @too.rated ? "#{@too.rated}%" : 'Be The first to rate this Too' %></p>
-	</div>
- -->
+	<!-- <div class = 'info'>
+		<p>Rating:<%= @too.rated ? "#{@too.rated}%" : 'Be The first to rate this Too' %></p>
+	</div> -->
+
 	<div id='rateform' class = 'info'>		
 		<%= erb :'partials/rating'%>				
 	</div>
 
-	<!-- <div class = 'info'>
-		<form method = 'POST' action = '/<%#=params[:id]%>'>
+	<div class = 'info'>
+			<form method = 'POST' action = '/<%=params[:id]%>'>
 			<input type="hidden" name="_method" value= 'DELETE'>
-			<input type="submit" name="Delete" value='Remove'>
+			<input type="hidden" name="Delete" value='Remove'>
 		</form>
 	</div>
 
-	<div class = 'info'>
+	<!-- <div class = 'info'>
 		<a href="/<%= @too.id %>/edit">edit</a>
 	</div> -->
 
