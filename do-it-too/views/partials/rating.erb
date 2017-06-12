@@ -1,4 +1,5 @@
- <% if $unvoted%> 
+ 
+  
 
 	<form class= 'rateform' method ='POST' action = '/<%=@too.id%>/rate'>
 		<input type="hidden" name="_method" value='PUT'>	
@@ -29,5 +30,3 @@
 		<input type="hidden" name="rating" value='5'>
 		<input class= 'rate' type="submit" value=5>
 	</form>
-
-<%end%>
