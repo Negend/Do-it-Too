@@ -1,13 +1,38 @@
 <h1>Welcome to <%= @tooder.tooder%>'s Toos</h1>
 
 <% @toos.each do |too| %>
-<div class='too'>
-  <h3><a href="/<%= too.id %>"><%= too.too_file %></a></h3>
-  <p><%= too.rated %></p>
+	<div class='too'>
+	  <a href="/<%= too.id %>"><img class = 'too' src='/<%=too.too_file%>'></a>
+	  <p><%= too.rated %>%</p>
+	</div>
+	<!-- make user delete -->
+	<form method = 'POST' action = '/tooder/<%=params[:id]%>'>
+		<input type="hidden" name="_method" value= 'DELETE'>
+		<input type="submit" name="Delete" value='Remove'>
+	</form>
+
+
+<div class="row">
+  <div class="col-xs-6 col-md-3">
+    <a href="" class="thumbnail">
+      <img src="/<%=too.too_file%>" alt="<%=too.tooder%>">
+    </a>
+  </div>
 </div>
-<!-- make user delete -->
-<form method = 'POST' action = '/tooder/<%=params[:id]%>'>
-	<input type="hidden" name="_method" value= 'DELETE'>
-	<input type="submit" name="Delete" value='Remove'>
-</form>
+
+
+
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="/<%=too.too_file%>" alt="<%=too.tooder%>">
+      <div class="caption">
+        
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <% end %>
