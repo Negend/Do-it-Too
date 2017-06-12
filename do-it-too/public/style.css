@@ -74,7 +74,7 @@ nav{
 .banana{
 	column-count:2;
 	background-color:white;
-	background:linear-gradient(to right, white,white,white,white,rgba(255, 255, 2, 0),rgba(255, 255, 2, 0),rgba(255, 255, 2, 0),rgba(255, 255, 2, 0),white,white,white,white);
+	background:linear-gradient(to right, white,white,white,white,rgba(255, 255, 2, 0),rgba(255, 255, 2, 0),rgba(255, 255, 2, 0),white,white,white,white);
 	padding-top:150px;
 	margin-top:-100px;
 	z-index: -2px
@@ -131,11 +131,13 @@ a{
 	text-decoration: none;
 	display:inline-block;
 	color:black;
+	height:100%;
+	width:100%;
 }
 
 .show{
-	height:35vh;
-	width:70vw;
+	height:31vh;
+	width:65vw;
 	margin:2.5% auto;
 	display: inline-block;
 	vertical-align: top;
@@ -151,7 +153,9 @@ a{
 	height:80%;
 	width:18%;
 }
-
+.password{
+	color:white;
+}
 
 .too {
 	display: inline-block;
