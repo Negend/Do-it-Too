@@ -8,6 +8,7 @@ class Too
 	def self.hydrate too_data
 		too = Too.new
 		too.id = too_data['id']
+		too.tooder = too_data['username']
 		too.date = too_data['join_date']
 		too.user_id = too_data['user_id']
 		too.too_file = too_data['too_file']
@@ -25,9 +26,9 @@ class Too
 	end
 
 	# index
-	def self.all
+	def self.all third
 		conn = self.open_connection
-		sql = "SELECT t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id ORDER BY id"
+		sql = "SELECT t.id, user_id, do_it_id, too_file, rating, username, join_date FROM testoos t INNER JOIN members m ON t.user_id = m.id WHERE do_it_id = #{third} ORDER BY id"
 		results = conn.exec(sql)
 		toos = results.map do |tuple| 
         	self.hydrate tuple

@@ -15,11 +15,11 @@ class ToosController < Sinatra::Base
   third = 1
   do_its = ['/do-its/elephant.jpg','/do-its/sloth.jpg','/do-its/dragon.jpg']
   $do_it = do_its[third]
-
+  $unvoted = true
 
 
 	get '/' do
-		@toos = Too.all
+		@toos = Too.all third
 		
 		@home = true 
 		erb :'toos/index'  
@@ -71,7 +71,7 @@ class ToosController < Sinatra::Base
     username = params[:username]
     rating = params[:rating]
     @file = params[:tfile][:filename]   
-    do_it_id = 1   	# check if theyve posted before if not, add them as a tooder
+    do_it_id = third   	# check if theyve posted before if not, add them as a tooder
    	unregistered = true
    	toos = Too.all
    	toos.each {|too| unregistered = false if username == too.tooder}
@@ -127,7 +127,7 @@ class ToosController < Sinatra::Base
   get '/:id/rate-edit'  do
     id = params[:id].to_i
     @too= Too.find_by_id id
-    erb :'toos/edit'
+    
   end
 
   put '/:id/rate'do 
@@ -147,6 +147,7 @@ class ToosController < Sinatra::Base
   	rated = "#{a},#{b}"
   	
   	Too.rate rated,id
+    $unvoted = false
   	redirect "/"+id.to_s
 	end
 
