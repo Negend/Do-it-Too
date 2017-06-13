@@ -169,6 +169,7 @@ a{
 	width: 30vw;
 	border-radius:8px;
 	border:4px solid black;
+	min-width: 300px;
 }
 article{
 	display:inline-block;
@@ -184,4 +185,20 @@ article{
 .stars p{
 	font-size:27px;
 	margin:0;
+}
+
+@media screen and (min-width :568px){
+	
+	.toos{
+		width:383.3px;
+		height:220px;
+	}
+	.show{
+		width:383.3px;
+		height:220px;
+	}
+
+
+
+
 }
