@@ -1,6 +1,6 @@
 $(loaded)
 function loaded (){
-console.log('jimini cricket')
+
 
 
 $('#m').click(function(event){

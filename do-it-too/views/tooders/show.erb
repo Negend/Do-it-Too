@@ -1,15 +1,16 @@
-<br/ ><h1>Welcome to <%= @tooder.tooder%>'s Toos</h1><br />
-
+<br/ ><h1 style='font-size:1.6em'>Welcome to <%= @tooder.tooder%>'s Toos</h1><br />
+<br/ >
 <% @toos.each do |too| %>
 	<div class=''>
 	  <a href="/<%= too.id %>"><img class = 'too' src='/<%=too.too_file%>'></a>
-	  <p><%= too.rated %>%</p>
+	  <h4> &#9889 <%= too.rated ? "#{too.rated}%" : 'Rate it first' %></h4>
 	</div>
 	<!-- make user delete -->
 	<form method = 'POST' action = '/tooder/<%=params[:id]%>'>
 		<input type="hidden" name="_method" value= 'DELETE'>
+    <input class="password" type="text" name="password" placeholder="Password">
 		<input type="submit" name="Delete" value='Remove'>
-	</form>
+	</form><br/ ><br/ >
 
 
 <% end %>
