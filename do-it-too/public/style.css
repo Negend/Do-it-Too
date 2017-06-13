@@ -11,7 +11,10 @@ body{
 	text-align: center;
 	/*height:90vh;*/
 }
-
+footer{
+	background-color: black;
+	padding:20px;
+}
 
 
 header{
@@ -142,6 +145,9 @@ a{
 	display: inline-block;
 	vertical-align: top;
 
+}
+.delete{
+	margin-top:30px;
 }
 #rateform{
 	margin-top:3%; 
