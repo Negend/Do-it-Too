@@ -12,54 +12,45 @@ class ToosController < Sinatra::Base
   end
 
 
-  third = 0
+  third = 1
   do_its = ['/do-its/elephant.jpg','/do-its/sloth.jpg','/do-its/dragon.jpg']
+  do_itms = ['Too of the week: On your marks... get set... Do it Too like mr Elephant' ,'Too of the week: Look at mr sloth. He likes to kick back and relax. Do it Too.' ,'Too of the week: Get ready for take off. Mr Dragon-fly id fired up to got.. Do it Too']
+  $do_itm = do_itms[third]
   $do_it = do_its[third]
-  $unvoted = true
+ 
 
 
 	get '/' do
-		@toos = Too.all third
-		
+		@toos = Too.all third		
 		@home = true 
 		erb :'toos/index'  
 	end
 
   get '/new'  do    	
-    erb :'toos/new'    
+    erb :'toos/new' 
+
   end  
   
 	get '/tooder' do
 		@tooders = Too.all_tooders
 		erb :'tooders/index'
 	end
+
   get '/tooder/:id' do
   	id = params[:id].to_i 
   	@tooder = Too.find_tooder id		
     @toos = Too.tooders_toos id  
 		erb :'tooders/show'
   end
-	get '/tooder/:id/edit' do
-  end
+
   delete '/tooder/:id' do
   	Too.destroy_tooder params[:id].to_i
   	redirect '/tooder'
   end
 
-
-
-
-
-
 	get '/:id' do
 		id = params[:id].to_i 
 		@too = Too.find_by_id id
-		# if @too.rating
-		# rating = @too.rating.split(',')
-		# a = rating[0].to_i
-		# b = rating[1].to_i
-		# @rating = a/b*100
-		# end
     erb :'toos/show'  
 	end
 
@@ -91,11 +82,7 @@ class ToosController < Sinatra::Base
 	  end  
     redirect "/"    
   end
-
-  
-    
-
-    
+   
   put '/:id'  do 
   	'put'      
    	id = params[:id].to_i
@@ -136,25 +123,20 @@ class ToosController < Sinatra::Base
     
   end
 
-  put '/:id/rate'do 
+  put '/:id/rate'do    
     id = params[:id].to_i
   	too = Too.find_by_id id
   	if too.rating 
   		rating = too.rating
   		rating = rating.split(',')
   		a = rating[0].to_i + params[:rating].to_i
-  		b = rating[1].to_i + 5
-  		
-  	else
-  		
+  		b = rating[1].to_i + 5 		
+  	else 		
   		a = params[:rating].to_i
   		b = 5
   	end
-  	rated = "#{a},#{b}"
-  	
+  	rated = "#{a},#{b}" 	
   	Too.rate rated,id
-    $unvoted = false
-
   	redirect "/"+id.to_s
 	end
 
