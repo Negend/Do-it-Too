@@ -1,14 +1,15 @@
 <section class='show'>	
-		<img class ='toos' src='<%=@too.too_file%>'>							
+	<img class ='toos' src='<%=@too.too_file%>'>
+	<div class = 'label'>
+		<h4> &#9889 <%= @too.rated ? "#{@too.rated}%" : 'Rate it first' %></h4>
+	</div>							
 </section>
 <div id='info'>
 	<div class ='tooName info'>
 		By &nbsp <%=@too.tooder %>
 	</div>
 
-	<div class = 'info'>
-		<h4> &#9889 <%= @too.rated ? "#{@too.rated}%" : 'Rate it first' %></h4>
-	</div>
+	
  
 	<div id='rateform' class = 'info'>		
 		<%= erb :'partials/rating' if $voted != true%>
