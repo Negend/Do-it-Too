@@ -11,7 +11,7 @@ class ToosController < Sinatra::Base
       register Sinatra::Reloader
   end
 
-
+  
   third = 1
   do_its = ['/do-its/elephant.jpg','/do-its/sloth.jpg','/do-its/dragon.jpg']
   do_itms = ['Too of the week: On your marks... get set... Do it Too like mr Elephant' ,'Too of the week: Look at mr sloth. He likes to kick back and relax. Do it Too.' ,'Too of the week: Get ready for take off. Mr Dragon-fly id fired up to got.. Do it Too']

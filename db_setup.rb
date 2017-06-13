@@ -11,8 +11,8 @@ class DatabaseSetup
     end  
     def self.go
         conn = self.open_connection
-        sql = "ALTER TABLE testoos ADD
-            too_file VARCHAR(200);"
+        sql = "insert into testoos set (user_id, do_it_id,too_file,rating) values(0,1,race.jpg,'3,5');
+            insert into members set (id,do_it_id,join_date) values(0,1,Current_timestamp,hi);"
         conn.exec(sql)
     end
 end
