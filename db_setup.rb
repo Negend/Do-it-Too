@@ -12,8 +12,7 @@ class DatabaseSetup
     def self.go
         conn = self.open_connection
         sql = "
-        delete from testoos where id = 0;
-            delete from members where id = 0;"
+        delete from testoos where id = 0;delete from members where id = 0;"
         conn.exec(sql)
     end
 end
