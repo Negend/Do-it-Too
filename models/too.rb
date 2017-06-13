@@ -1,20 +1,19 @@
 class Too
 	attr_accessor :id, :user_id, :do_it_id, :too_file, :rating, :tooder, :date, :rated, :password
 	
-	def self.open_connection
-		 def self.open_connection
-    if ENV['DATABASE_URL']
-      PG.connect({
-        dbname: ENV['DB_NAME'],
-        user: ENV['DB_USER'],
-        password: ENV['DB_PASSWORD'],
-        host: ENV['DB_HOST'],
-        port: ENV['DB_PORT']
-      })
-    else
-      PG.connect(dbname: "do_it_too")
+	def self.open_connection		 
+	    if ENV['DATABASE_URL']
+	      PG.connect({
+	        dbname: ENV['DB_NAME'],
+	        user: ENV['DB_USER'],
+	        password: ENV['DB_PASSWORD'],
+	        host: ENV['DB_HOST'],
+	        port: ENV['DB_PORT']
+	      })
+	    else
+	      PG.connect(dbname: "do_it_too")
+	    end
     end
-  end
 
 	def self.hydrate too_data
 		too = Too.new
