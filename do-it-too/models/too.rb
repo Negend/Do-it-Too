@@ -137,7 +137,7 @@ class Too
 
 	def self.all_tooders
 		conn = self.open_connection
-		sql = "SELECT m.id, username, join_date FROM members m join testoos t on t.user_id = m.id ORDER BY m.id"
+		sql = "SELECT m.id, username, join_date FROM members m join testoos t on t.user_id = m.id  ORDER BY m.id "
 		results = conn.exec(sql)
 		tooders = results.map do |tuple| 
           self.hydrate_tooder tuple
