@@ -11,19 +11,8 @@ class DatabaseSetup
     end  
     def self.go
         conn = self.open_connection
-        sql = "DROP TABLE testoos; DROP TABLE members; CREATE TABLE testoos (
-            id serial NOT NULL ,
-            user_id INTEGER NOT NULL,
-            too_file VARCHAR(200),
-            do_it_id  INTEGER NOT NULL,            
-            rating TEXT
-        ); 
-        CREATE TABLE members(
-            id serial NOT NULL,
-            username varchar(50) NOT NULL,
-            join_date DATE NOT NULL,
-            password varchar(50)
-        );"
+        sql = "ALTER TABLE testoos ADD
+            too_file VARCHAR(200);"
         conn.exec(sql)
     end
 end
