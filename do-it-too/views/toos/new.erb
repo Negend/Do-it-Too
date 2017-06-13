@@ -1,5 +1,13 @@
 
-
+<section >
+	<div class = 'bananas'>
+		<img id ='do_it' src="<%=$do_it%>">
+		
+		<div style = 'margin-top:-50px;'>
+			<h4> <%=$do_itm%> </h4>
+		</div>
+	</div>
+</section>
 
 
 <form id='form' method ='POST' action = '/' enctype='multipart/form-data'>
@@ -7,9 +15,9 @@
 		<label>Log</label>
 		<input type="text" name="username" placeholder="usename">
 		<input type="text" name="password" placeholder="password(optional)">
-	</div>
+	</div><br />
 	<div class = 'form'>
-		<label>File</label>	
+			
 		<input type="file" name="tfile">
 	</div>
 	<input type="submit" value='Did It!'>

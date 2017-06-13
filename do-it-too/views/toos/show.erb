@@ -6,21 +6,16 @@
 		By &nbsp <%=@too.tooder %>
 	</div>
 
-	<!-- <div class = 'info'>
-		<p>Rating:<%= @too.rated ? "#{@too.rated}%" : 'Be The first to rate this Too' %></p>
-	</div> -->
-<% if @unvoted == true%> 
-	<div id='rateform' class = 'info'>		
-		<%= erb :'partials/rating'%>				
-	</div>
-<%end%>
 	<div class = 'info'>
-			<form method = 'POST' action = '/<%=params[:id]%>'>
-			<input type="hidden" name="_method" value= 'DELETE'>
-			<input class="password" type="text" name="password" placeholder="password">
-			<input type="submit" name="Delete" value='Remove'>
-		</form>
+		<h4> &#9889 <%= @too.rated ? "#{@too.rated}%" : 'Rate it first' %></h4>
 	</div>
+ 
+	<div id='rateform' class = 'info'>		
+		<%= erb :'partials/rating' if $voted != true%>
+
+	</div>
+
+	
 
 	<!-- <div class = 'info'>
 		<a href="/<%= @too.id %>/edit">edit</a>
@@ -30,6 +25,15 @@
 <section class='show'>	
 	<a href="/"><img class ='toos' src='<%=$do_it%>'></a> 		
 </section>
+<div>
+  	<div class = 'delete'>
+			<form method = 'POST' action = '/<%=params[:id]%>'>
+			<input type="hidden" name="_method" value= 'DELETE'>
+			<input class="password" type="text" name="password" placeholder="password">
+			<input type="submit" name="Delete" value='Remove'>
+		</form>
+	</div>
+</div>
 
 
 		<!-- <a href="/<%= @too.id %>/rate-edit">RATE &#9734</a>
