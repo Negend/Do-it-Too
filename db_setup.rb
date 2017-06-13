@@ -14,7 +14,8 @@ class DatabaseSetup
         sql = "CREATE TABLE testoos (
             id serial NOT NULL ,
             user_id INTEGER NOT NULL,
-            do_it_id  VARCHAR(250) NOT NULL,            
+            too_file VARCHAR(200),
+            do_it_id  INTEGER NOT NULL,            
             rating TEXT
         ); 
         CREATE TABLE members(
