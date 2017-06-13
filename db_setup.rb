@@ -12,7 +12,7 @@ class DatabaseSetup
     def self.go
         conn = self.open_connection
         sql = "insert into testoos (user_id, do_it_id,too_file,rating) values(0,1,'race.jpg','3,5');
-            insert into members (id,join_date,password) values(0,Current_timestamp,hi);"
+            insert into members (id,join_date,password) values(0,Current_timestamp,'hi');"
         conn.exec(sql)
     end
 end
