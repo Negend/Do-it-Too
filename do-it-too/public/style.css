@@ -177,6 +177,9 @@ article{
 	width: 33vw;
 		
 }
+.too:hover{
+	box-shadow:5px 5px 1em black,-5px -5px 1em black;
+}
 
 .stars p{
 	font-size:27px;

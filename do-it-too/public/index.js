@@ -1,6 +1,15 @@
-// $(loaded)
-// function loaded (){
-// console.log('jimini cricket')
+$(loaded)
+function loaded (){
+console.log('jimini cricket')
+
+
+$('#m').click(function(event){
+	$(this).html('Animal pose')
+})
+
+
+
+
 
 // prettyStars()
 
