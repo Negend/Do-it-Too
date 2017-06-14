@@ -13,7 +13,7 @@ class DatabaseSetup
         conn = self.open_connection
         sql = "
         delete from testoos where too_file ='race.jpg' ;
-            delete from members where username = tester;"
+            delete from members where username = 'tester';"
         conn.exec(sql)
     end
 end
