@@ -17,13 +17,13 @@ class Too
 
 	def self.hydrate too_data
 		too = Too.new
-		too.id = too_data['id']
-		too.tooder = too_data['username']
-		too.date = too_data['join_date']
-		too.user_id = too_data['user_id']
-		too.too_file = too_data['too_file']
-		too.do_it_id = too_data['do_it_id']
-		too.rating = too_data['rating']
+		too.id = too_data['id'] if too_data['id']
+		too.tooder = too_data['username'] if too_data['username']
+		too.date = too_data['join_date'] if too_data['join_date']
+		too.user_id = too_data['user_id'] if too_data['user_id']
+		too.too_file = too_data['too_file'] if too_data['too_file']
+		too.do_it_id = too_data['do_it_id'] if too_data['do_it_id']
+		too.rating = too_data['rating'] if too_data['rating']
 
 		if too.rating
 		rating = too.rating.split(',')
