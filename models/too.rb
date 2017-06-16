@@ -49,10 +49,10 @@ class Too
 
 	def self.hydrate_tooder tooder_data
 	    tooder = Too.new
-	    tooder.id = tooder_data['id']
-	    tooder.date = tooder_data['join_date']   
-	    tooder.tooder = tooder_data['username']
-	    tooder.password = tooder_data['password']
+	    tooder.id = tooder_data['id'] if tooder_data['id']
+	    tooder.date = tooder_data['join_date'] if tooder_data['join_date']   
+	    tooder.tooder = tooder_data['username'] if tooder_data['username']
+	    tooder.password = tooder_data['password'] if tooder_data['password']
 	    tooder
 	end
 
