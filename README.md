@@ -64,13 +64,24 @@ Before uploading to the online server **Heroku** the app was run and developed o
 
 
 
-## MVP
-Targets in order of wishful thinking starting from easiest
+## Features
 
-* mvp will be giving users an abilty to post pictures with editable ratings
-* having certain pictures posted appear on  specific pages
-* make it look goood
-* make user membership
-* ability to see all pictures posted by specific user
-* comment section
+### MVP
+Targets to produce a minimum viable product
 
+* Giving users an abilty to post pictures 
+* Give user ability to edit the rating on an upload
+* Make it look good
+* have uploaded pictures visbile on home page
+
+
+### Scope
+
+* Make user membership log
+* Ability to see all pictures posted by specific user
+* Give memembers a different page 
+* Make uploads appear with their matching pictures 
+* give users option to make password
+* allow uploads to be deleted if password is correct
+* a page for each tooder with many details on  the post
+* variable messages for each upload of the week. giving admin ability to manipulate it
