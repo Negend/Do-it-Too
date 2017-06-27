@@ -43,7 +43,22 @@ run command to start the local server and have free use of the app
   
   * extra table for members including their date user name id and password
   * With **absence** of **ActiveRecord** many relationships between members and uploads were made direct to **SQL** 
+
+  This query alone was necssary to show the latest upload for each member id with all its corresponding info
   
+		  sql = "SELECT id, user_id, do_it_id, too_file, rating, username,join_date 
+				  	FROM (
+				  		SELECT t.id, user_id, do_it_id, too_file, rating, username,join_date 
+							FROM members m inner join testoos t on m.id  = t.user_id 
+							WHERE t.id in (
+								SELECT max(t.id) 
+		  							FROM members m 
+			  						INNER JOIN testoos t 
+		  							ON m.id  = t.user_id group by username
+		  							)
+		  				) y
+		  			WHERE user_id = #{id}"
+		  
   
 ### JavaScript
  
@@ -53,6 +68,7 @@ Json was the main reason for creating a javascript file which I planned to use t
 
 ### CSS/HTML
 The styling as observed on the sight is general for all pages therefore only one stylesheet has been deemed necesarry. with the html the pages have been made quite modular. taking advantage of sinatras ability to find a general layout and yield code from different html pages when called.
+Focus of styling was always white background for reading text. Beige nd black theme with square/sqaurish boxes and noticable black borders to give the effect of a framed image. the writing is simple but with a little character to encourage a fun whacky environment for uploaders
 
 ### Ruby
 Ruby is the main language used. A very clean language.  Approaching the site with the MVC model and the **Sinatra** framework. all folders and files are run from the config.ru
@@ -85,3 +101,6 @@ Targets to produce a minimum viable product
 * allow uploads to be deleted if password is correct
 * a page for each tooder with many details on  the post
 * variable messages for each upload of the week. giving admin ability to manipulate it
+
+
+![Image uploading page](sample.png)
