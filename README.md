@@ -28,18 +28,18 @@ run command to start the local server and have free use of the app
   * Upload contains;
   		* id
   		* picture id(secondary key from table or array of picture being mimicked
-  		
-  		* user id()
-  		* rating feature two numbers one increase by 1-5  and the other increasing by 5's a  ratio is represented in percentage)
-  		* file(picture url) (if pic fails; drop post)
+	
+	* user id()
+	* rating feature two numbers one increase by 1-5  and the other increasing by 5's a  ratio is represented in percentage)
+	* file(picture url) (if pic fails; drop post)
 
-  	* editable features;
-  	  * Entire post by the user except rating
-  	  * rating editable by other users
-  	* restrictions
-  	   * url must be valid url or file must be valid file
-  	   * rating is 1-5 starting with 5 (buttons with js)
-  	   * no swear words
+* editable features;
+  * Entire post by the user except rating
+  * rating editable by other users
+* restrictions
+   * url must be valid url or file must be valid file
+   * rating is 1-5 starting with 5 (buttons with js)
+   * no swear words
   
   * extra table for members including their date user name id and password
   * With **absence** of **ActiveRecord** many relationships between members and uploads were made direct to **SQL** 
