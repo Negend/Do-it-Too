@@ -4,7 +4,7 @@ App works but is far from perfect, with time there will be many ways to go about
 A list of features to be considered in future once there is free time
 ### Cloud Storage
 #### Summary
-With the Carrier-wave or **imgur** ruby gem, or an alternative Images should now be saved in a cloud storaged and then linked to the website once uploaded to prevent databas wipipng on restart
+With the Carrier-wave or [**imgur**](https://github.com/augustt198/imgur) ruby gem, or an alternative Images should now be saved in a cloud storaged and then linked to the website once uploaded to prevent databas wipipng on restart
 #### Steps
 * install and require carrierwave gem
 * creacte uploader class and inherit carrier methods
