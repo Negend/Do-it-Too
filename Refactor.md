@@ -10,6 +10,14 @@ With the Carrier-wave or **imgur** ruby gem, or an alternative Images should now
 * creacte uploader class and inherit carrier methods
 * create a method that uploads any file in the public/uploads and stores in clouds then sets url to database table
 * edit current method so files are uploaded to the uploads folder but urls are not saved to database
-*integerate new and old method so that files are uploaded thru normal process and then saved to cloud with their links in database
+* integerate new and old method so that files are uploaded thru normal process and then saved to cloud with their links in database
 
 ## Design Change
+### Margin correct.
+#### Summary
+As it stands the web page is not centered on the screen and is causing it to be off centre
+#### Steps
+* Using dev tools experiment with switching the margin to a padding instead
+* Delete margin entirely
+* If padding is not appropriate then redesign again with dev tools
+* Add more Toos to confirm that it has worked
